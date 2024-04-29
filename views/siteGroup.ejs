@@ -1,10 +1,11 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="siteGroup" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxValidator:{},dmxFormatter:{},dmxAnimateCSS:{}}" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="siteGroup" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxValidator:{},dmxFormatter:{},dmxAnimateCSS:{},dmxStateManagement:{}}" -->
 <dmx-serverconnect id="connectOrg" url="/api/org/read_org"></dmx-serverconnect>
+<dmx-query-manager id="query1"></dmx-query-manager>
 
 <dmx-notifications id="notifies1"></dmx-notifications>
 
 
-<dmx-serverconnect id="connectSiteGroup" url="/api/siteGroup/read_siteGroup"></dmx-serverconnect>
+<dmx-serverconnect id="connectSiteGroup" url="/api/siteGroup/read_siteGroup" dmx-param:sort="query1.data.sort" dmx-param:dir="query1.data.dir"></dmx-serverconnect>
 <dmx-data-detail id="data_detailSiteGroup" dmx-bind:data="connectSiteGroup.data.query_siteGroup" key="content.data_detailSiteGroup.data.siteGroupId"></dmx-data-detail>
 <div class="modal" id="modal2" is="dmx-bs5-modal" tabindex="-1">
     <div class="modal-dialog" role="document">
@@ -53,12 +54,12 @@
                             <div class="row gx-3">
                                 <div class="col">
                                     <div class="form-group mb-3 text-center">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group mb-3">
-                                        <button type="submit" class="btn btn-primary text-center" dmx-bind:value="data_detailSiteGroup.data.Save" dmx-bind:disabled="state.executing">Save <span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="submit" class="btn btn-primary text-center" dmx-bind:value="data_detailSiteGroup.data.Save" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
                                     </div>
                                 </div>
 
@@ -141,7 +142,7 @@
 </div>
 <div class="row">
     <div class="col text-end">
-        <button id="btn1" class="btn text-bg-secondary" data-bs-toggle="modal" data-bs-target="#modal1">Add new SiteGroup</button>
+        <button id="btn1" class="btn bg-secondary text-light" data-bs-toggle="modal" data-bs-target="#modal1">Add new SiteGroup</button>
     </div>
 </div>
 <div class="row">
