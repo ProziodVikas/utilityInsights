@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "queryOrg",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [
+            {
+              "table": "org",
+              "column": "orgId"
+            },
+            {
+              "table": "org",
+              "column": "orgDis"
+            },
+            {
+              "table": "org",
+              "column": "orgName"
+            },
+            {
+              "table": "org",
+              "column": "orgMedia"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "org"
+          },
+          "primary": "orgId",
+          "joins": [],
+          "query": "select `orgId`, `orgDis`, `orgName`, `orgMedia` from `org`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "orgId"
+        },
+        {
+          "type": "text",
+          "name": "orgDis"
+        },
+        {
+          "type": "text",
+          "name": "orgName"
+        },
+        {
+          "type": "text",
+          "name": "orgMedia"
+        }
+      ],
+      "type": "dbconnector_select",
+      "outputType": "array"
+    }
+  }
+}

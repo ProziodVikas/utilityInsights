@@ -1,0 +1,152 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="organization" appConnect="local" components="{dmxTyped:{},dmxBootstrap5Modal:{},dmxBootstrap5Navigation:{},dmxNotifications:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Tooltips:{},dmxDataTraversal:{},dmxValidator:{}}" -->
+
+<dmx-serverconnect id="conn_org" url="/api/org/read_org"></dmx-serverconnect>
+<dmx-data-detail id="data_detailOrg" dmx-bind:data="conn_org.data.queryOrg" key="orgId"></dmx-data-detail>
+<dmx-notifications id="notifies1"></dmx-notifications>
+<div class="modal" id="modal2" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Organization</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="formUpdateOrg" method="post" action="/api/org/update_org" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detailOrg.data" dmx-on:success="notifies1.success('Organization updated successfully');conn_org.load({});modal2.toggle()">
+                            <input type="hidden" name="orgId" id="upd_orgId" dmx-bind:value="data_detailOrg.data.orgId">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_orgName">Name</label>
+                                        <input type="text" class="form-control" id="upd_orgName" name="orgName" dmx-bind:value="data_detailOrg.data.orgName" aria-describedby="upd_orgName_help" placeholder="Enter Org name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_orgDis">Description</label>
+                                        <input type="text" class="form-control" id="upd_orgDis" name="orgDis" dmx-bind:value="data_detailOrg.data.orgDis" aria-describedby="upd_orgDis_help" placeholder="Enter Org dis">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_orgMedia">Media Url</label>
+                                        <input type="text" class="form-control" id="upd_orgMedia" name="orgMedia" dmx-bind:value="data_detailOrg.data.orgMedia" aria-describedby="upd_orgMedia_help" placeholder="Enter Org media">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="submit" class="btn btn-primary" dmx-bind:value="data_detailOrg.data.Save" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Organization</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start">
+
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="formAddOrg" method="post" action="/api/org/add_org" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:success="notifies1.success('Organization added successfully');modal1.toggle();conn_org.load({})">
+                            <div class="form-group mb-3">
+                                <label for="ins_add_orgName">Name</label>
+                                <input type="text" class="form-control" id="ins_add_orgName" name="orgName" aria-describedby="ins_add_orgName_help" placeholder="Enter organization name" required="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="ins_add_orgDis">Description</label>
+                                <input type="text" class="form-control" id="ins_add_orgDis" name="orgDis" aria-describedby="ins_add_orgDis_help" placeholder="Enter organization description" required="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="ins_add_orgMedia">Media Url</label>
+                                <input type="text" class="form-control" id="ins_add_orgMedia" name="orgMedia" aria-describedby="ins_add_orgMedia_help" placeholder="Enter media url">
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="row">
+                                    <div class="col text-center"><button type="button" class="btn btn-secondary text-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1" dmx-on:click="formAddOrg.reset()">Cancel</button></div>
+                                    <div class="col text-center"><button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button></div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<meta name="ac:route" content="/organization">
+
+<header class="navbar-dark text-end">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Organization</h2>
+        </div>
+    </div>
+</header>
+<div class="row">
+    <div class="col text-end">
+        <button id="btn1" class="btn text-bg-secondary" data-bs-toggle="modal" data-bs-target="#modal1">Add New Organization
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="text-start">
+                    <tr>
+                        <th>ID</th>
+                        <th>Organization name</th>
+                        <th>Description</th>
+
+                        <th>Media</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_org.data.queryOrg" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="orgId"></td>
+
+                        <td dmx-text="orgName"></td>
+                        <td dmx-text="orgDis"></td>
+                        <td dmx-text="orgMedia"></td>
+                        <td dmx-text="'Edit'" dmx-on:click="modal2.show();data_detailOrg.select(orgId)"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

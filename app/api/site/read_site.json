@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_site",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [
+            {
+              "table": "site",
+              "column": "siteId"
+            },
+            {
+              "table": "site",
+              "column": "orgId"
+            },
+            {
+              "table": "site",
+              "column": "siteGroupId"
+            },
+            {
+              "table": "site",
+              "column": "siteName"
+            },
+            {
+              "table": "site",
+              "column": "siteDis"
+            },
+            {
+              "table": "site",
+              "column": "siteStartDate"
+            },
+            {
+              "table": "site",
+              "column": "siteEndDate"
+            },
+            {
+              "table": "site",
+              "column": "area"
+            },
+            {
+              "table": "site",
+              "column": "contactName"
+            },
+            {
+              "table": "site",
+              "column": "contactPhone"
+            },
+            {
+              "table": "site",
+              "column": "contactEmail"
+            },
+            {
+              "table": "site",
+              "column": "street"
+            },
+            {
+              "table": "site",
+              "column": "city"
+            },
+            {
+              "table": "site",
+              "column": "state"
+            },
+            {
+              "table": "site",
+              "column": "country"
+            },
+            {
+              "table": "site",
+              "column": "postalCode"
+            },
+            {
+              "table": "site",
+              "column": "coord"
+            },
+            {
+              "table": "site",
+              "column": "media"
+            },
+            {
+              "table": "site",
+              "column": "primaryFunction"
+            },
+            {
+              "table": "site",
+              "column": "timeZone"
+            },
+            {
+              "table": "site",
+              "column": "status"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "site"
+          },
+          "primary": "siteId",
+          "joins": [],
+          "query": "select `siteId`, `orgId`, `siteGroupId`, `siteName`, `siteDis`, `siteStartDate`, `siteEndDate`, `area`, `contactName`, `contactPhone`, `contactEmail`, `street`, `city`, `state`, `country`, `postalCode`, `coord`, `media`, `primaryFunction`, `timeZone`, `status` from `site`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "siteId"
+        },
+        {
+          "type": "number",
+          "name": "orgId"
+        },
+        {
+          "type": "number",
+          "name": "siteGroupId"
+        },
+        {
+          "type": "text",
+          "name": "siteName"
+        },
+        {
+          "type": "text",
+          "name": "siteDis"
+        },
+        {
+          "type": "datetime",
+          "name": "siteStartDate"
+        },
+        {
+          "type": "datetime",
+          "name": "siteEndDate"
+        },
+        {
+          "type": "number",
+          "name": "area"
+        },
+        {
+          "type": "text",
+          "name": "contactName"
+        },
+        {
+          "type": "text",
+          "name": "contactPhone"
+        },
+        {
+          "type": "text",
+          "name": "contactEmail"
+        },
+        {
+          "type": "text",
+          "name": "street"
+        },
+        {
+          "type": "text",
+          "name": "city"
+        },
+        {
+          "type": "text",
+          "name": "state"
+        },
+        {
+          "type": "text",
+          "name": "country"
+        },
+        {
+          "type": "number",
+          "name": "postalCode"
+        },
+        {
+          "type": "text",
+          "name": "coord"
+        },
+        {
+          "type": "text",
+          "name": "media"
+        },
+        {
+          "type": "text",
+          "name": "primaryFunction"
+        },
+        {
+          "type": "text",
+          "name": "timeZone"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

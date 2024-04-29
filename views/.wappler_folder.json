@@ -1,0 +1,22 @@
+{
+  "test.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "organization.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "site.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "siteGroup.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "index.ejs": {
+    "layoutPage": "testlayout",
+    "description": ""
+  }
+}

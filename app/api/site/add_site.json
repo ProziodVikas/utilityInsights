@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "number",
+        "fieldName": "orgId",
+        "name": "orgId"
+      },
+      {
+        "type": "number",
+        "fieldName": "siteGroupId",
+        "name": "siteGroupId"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteName",
+        "name": "siteName"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteDis",
+        "name": "siteDis"
+      },
+      {
+        "type": "date",
+        "fieldName": "siteStartDate",
+        "name": "siteStartDate"
+      },
+      {
+        "type": "date",
+        "fieldName": "siteEndDate",
+        "name": "siteEndDate"
+      },
+      {
+        "type": "number",
+        "fieldName": "area",
+        "name": "area"
+      },
+      {
+        "type": "text",
+        "fieldName": "contactName",
+        "name": "contactName"
+      },
+      {
+        "type": "text",
+        "fieldName": "contactPhone",
+        "name": "contactPhone"
+      },
+      {
+        "type": "text",
+        "fieldName": "contactEmail",
+        "name": "contactEmail"
+      },
+      {
+        "type": "text",
+        "fieldName": "street",
+        "name": "street"
+      },
+      {
+        "type": "text",
+        "fieldName": "city",
+        "name": "city"
+      },
+      {
+        "type": "text",
+        "fieldName": "state",
+        "name": "state"
+      },
+      {
+        "type": "text",
+        "fieldName": "country",
+        "name": "country"
+      },
+      {
+        "type": "number",
+        "fieldName": "postalCode",
+        "name": "postalCode"
+      },
+      {
+        "type": "text",
+        "fieldName": "coord",
+        "name": "coord"
+      },
+      {
+        "type": "text",
+        "fieldName": "media",
+        "name": "media"
+      },
+      {
+        "type": "text",
+        "fieldName": "primaryFunction",
+        "name": "primaryFunction"
+      },
+      {
+        "type": "text",
+        "fieldName": "timeZone",
+        "name": "timeZone"
+      },
+      {
+        "type": "text",
+        "fieldName": "status",
+        "name": "status"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert_site",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "site",
+              "column": "orgId",
+              "type": "number",
+              "value": "{{$_POST.orgId}}"
+            },
+            {
+              "table": "site",
+              "column": "siteGroupId",
+              "type": "number",
+              "value": "{{$_POST.siteGroupId}}"
+            },
+            {
+              "table": "site",
+              "column": "siteName",
+              "type": "text",
+              "value": "{{$_POST.siteName}}"
+            },
+            {
+              "table": "site",
+              "column": "siteDis",
+              "type": "text",
+              "value": "{{$_POST.siteDis}}"
+            },
+            {
+              "table": "site",
+              "column": "siteStartDate",
+              "type": "datetime",
+              "value": "{{$_POST.siteStartDate}}"
+            },
+            {
+              "table": "site",
+              "column": "siteEndDate",
+              "type": "datetime",
+              "value": "{{$_POST.siteEndDate}}"
+            },
+            {
+              "table": "site",
+              "column": "area",
+              "type": "number",
+              "value": "{{$_POST.area}}"
+            },
+            {
+              "table": "site",
+              "column": "contactName",
+              "type": "text",
+              "value": "{{$_POST.contactName}}"
+            },
+            {
+              "table": "site",
+              "column": "contactPhone",
+              "type": "text",
+              "value": "{{$_POST.contactPhone}}"
+            },
+            {
+              "table": "site",
+              "column": "contactEmail",
+              "type": "text",
+              "value": "{{$_POST.contactEmail}}"
+            },
+            {
+              "table": "site",
+              "column": "street",
+              "type": "text",
+              "value": "{{$_POST.street}}"
+            },
+            {
+              "table": "site",
+              "column": "city",
+              "type": "text",
+              "value": "{{$_POST.city}}"
+            },
+            {
+              "table": "site",
+              "column": "state",
+              "type": "text",
+              "value": "{{$_POST.state}}"
+            },
+            {
+              "table": "site",
+              "column": "country",
+              "type": "text",
+              "value": "{{$_POST.country}}"
+            },
+            {
+              "table": "site",
+              "column": "postalCode",
+              "type": "number",
+              "value": "{{$_POST.postalCode}}"
+            },
+            {
+              "table": "site",
+              "column": "coord",
+              "type": "text",
+              "value": "{{$_POST.coord}}"
+            },
+            {
+              "table": "site",
+              "column": "media",
+              "type": "text",
+              "value": "{{$_POST.media}}"
+            },
+            {
+              "table": "site",
+              "column": "primaryFunction",
+              "type": "text",
+              "value": "{{$_POST.primaryFunction}}"
+            },
+            {
+              "table": "site",
+              "column": "timeZone",
+              "type": "text",
+              "value": "{{$_POST.timeZone}}"
+            },
+            {
+              "table": "site",
+              "column": "status",
+              "type": "text",
+              "value": "{{$_POST.status}}"
+            }
+          ],
+          "table": "site",
+          "returning": "siteId",
+          "query": "insert into `site` (`area`, `city`, `contactEmail`, `contactName`, `contactPhone`, `coord`, `country`, `media`, `orgId`, `postalCode`, `primaryFunction`, `siteDis`, `siteEndDate`, `siteGroupId`, `siteName`, `siteStartDate`, `state`, `status`, `street`, `timeZone`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgId}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupId}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.siteName}}",
+              "test": ""
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.siteDis}}",
+              "test": ""
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.siteStartDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P6",
+              "type": "expression",
+              "value": "{{$_POST.siteEndDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P7",
+              "type": "expression",
+              "value": "{{$_POST.area}}",
+              "test": ""
+            },
+            {
+              "name": ":P8",
+              "type": "expression",
+              "value": "{{$_POST.contactName}}",
+              "test": ""
+            },
+            {
+              "name": ":P9",
+              "type": "expression",
+              "value": "{{$_POST.contactPhone}}",
+              "test": ""
+            },
+            {
+              "name": ":P10",
+              "type": "expression",
+              "value": "{{$_POST.contactEmail}}",
+              "test": ""
+            },
+            {
+              "name": ":P11",
+              "type": "expression",
+              "value": "{{$_POST.street}}",
+              "test": ""
+            },
+            {
+              "name": ":P12",
+              "type": "expression",
+              "value": "{{$_POST.city}}",
+              "test": ""
+            },
+            {
+              "name": ":P13",
+              "type": "expression",
+              "value": "{{$_POST.state}}",
+              "test": ""
+            },
+            {
+              "name": ":P14",
+              "type": "expression",
+              "value": "{{$_POST.country}}",
+              "test": ""
+            },
+            {
+              "name": ":P15",
+              "type": "expression",
+              "value": "{{$_POST.postalCode}}",
+              "test": ""
+            },
+            {
+              "name": ":P16",
+              "type": "expression",
+              "value": "{{$_POST.coord}}",
+              "test": ""
+            },
+            {
+              "name": ":P17",
+              "type": "expression",
+              "value": "{{$_POST.media}}",
+              "test": ""
+            },
+            {
+              "name": ":P18",
+              "type": "expression",
+              "value": "{{$_POST.primaryFunction}}",
+              "test": ""
+            },
+            {
+              "name": ":P19",
+              "type": "expression",
+              "value": "{{$_POST.timeZone}}",
+              "test": ""
+            },
+            {
+              "name": ":P20",
+              "type": "expression",
+              "value": "{{$_POST.status}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

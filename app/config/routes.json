@@ -1,0 +1,25 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "page": "index",
+      "routeType": "page",
+      "layout": "testlayout"
+    },
+    {
+      "path": "/organization",
+      "page": "organization",
+      "layout": "main"
+    },
+    {
+      "path": "/site",
+      "page": "site",
+      "layout": "main"
+    },
+    {
+      "path": "/siteGroup",
+      "page": "siteGroup",
+      "layout": "main"
+    }
+  ]
+}

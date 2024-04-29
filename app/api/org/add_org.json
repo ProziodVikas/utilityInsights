@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/organization.ejs",
+      "linkedForm": "serverconnectform1"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "orgName",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "orgName"
+      },
+      {
+        "type": "text",
+        "fieldName": "orgDis",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "orgDis"
+      },
+      {
+        "type": "text",
+        "fieldName": "orgMedia",
+        "options": {
+          "rules": {}
+        },
+        "name": "orgMedia"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "insert_org",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "org",
+                "column": "orgDis",
+                "type": "text",
+                "value": "{{$_POST.orgDis}}"
+              },
+              {
+                "table": "org",
+                "column": "orgName",
+                "type": "text",
+                "value": "{{$_POST.orgName}}"
+              },
+              {
+                "table": "org",
+                "column": "orgMedia",
+                "type": "text",
+                "value": "{{$_POST.orgMedia}}"
+              }
+            ],
+            "table": "org",
+            "returning": "orgId",
+            "query": "insert into `org` (`orgDis`, `orgMedia`, `orgName`) values (?, ?, ?) returning `orgId`",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{$_POST.orgDis}}",
+                "test": ""
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{$_POST.orgName}}",
+                "test": ""
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.orgMedia}}",
+                "test": ""
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "name": "custom",
+        "module": "dbupdater",
+        "action": "custom",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "query": "insert into `org` (`orgName`, `orgDis`, `orgMedia`) values (:P1/* {{$_POST.orgName}}*/, :P2/*{{$_POST.orgDis}}*/, :P3/*{{$_POST.orgMedia}}*/)\n",
+            "params": [
+              {
+                "name": ":P1",
+                "value": "{{$_POST.orgName}}",
+                "test": "",
+                "recid": 1
+              },
+              {
+                "name": ":P2",
+                "value": "{{$_POST.orgDis}}",
+                "test": "",
+                "recid": 2
+              },
+              {
+                "name": ":P3",
+                "value": "{{$_POST.orgMedia}}",
+                "test": "",
+                "recid": 3
+              }
+            ]
+          },
+          "test": true
+        },
+        "output": true,
+        "meta": [],
+        "outputType": "array",
+        "disabled": true
+      }
+    ]
+  }
+}

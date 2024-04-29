@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "siteGroupName",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "siteGroupName"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteGroupDis",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "siteGroupDis"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteGroupMedia",
+        "name": "siteGroupMedia"
+      },
+      {
+        "type": "number",
+        "fieldName": "siteGroupId",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "siteGroupId"
+      },
+      {
+        "type": "number",
+        "fieldName": "orgRefSG",
+        "name": "orgRefSG"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update_siteGroup",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "siteGroup",
+              "column": "orgRefSG",
+              "type": "number",
+              "value": "{{$_POST.orgRefSG}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupName",
+              "type": "text",
+              "value": "{{$_POST.siteGroupName}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupDis",
+              "type": "text",
+              "value": "{{$_POST.siteGroupDis}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupMedia",
+              "type": "text",
+              "value": "{{$_POST.siteGroupMedia}}"
+            }
+          ],
+          "table": "siteGroup",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "siteGroupId",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.siteGroupId}}",
+                "data": {
+                  "column": "siteGroupId"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "siteGroupId",
+          "query": "update `siteGroup` set `orgRefSG` = ?, `siteGroupName` = ?, `siteGroupDis` = ?, `siteGroupMedia` = ? where `siteGroupId` = ? returning `siteGroupId`",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgRefSG}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupName}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupDis}}",
+              "test": ""
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupMedia}}",
+              "test": ""
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P5",
+              "value": "{{$_POST.siteGroupId}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

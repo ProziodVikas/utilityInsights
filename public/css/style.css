@@ -1,0 +1,13 @@
+#org_name { 
+}
+#org_name { 
+}
+#org_name { 
+}
+@media (min-width: 1200px) {
+.style1 {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex
+}
+}

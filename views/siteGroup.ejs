@@ -1,0 +1,185 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="siteGroup" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxValidator:{},dmxFormatter:{},dmxAnimateCSS:{}}" -->
+<dmx-serverconnect id="connectOrg" url="/api/org/read_org"></dmx-serverconnect>
+
+<dmx-notifications id="notifies1"></dmx-notifications>
+
+
+<dmx-serverconnect id="connectSiteGroup" url="/api/siteGroup/read_siteGroup"></dmx-serverconnect>
+<dmx-data-detail id="data_detailSiteGroup" dmx-bind:data="connectSiteGroup.data.query_siteGroup" key="content.data_detailSiteGroup.data.siteGroupId"></dmx-data-detail>
+<div class="modal" id="modal2" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Site Group</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="formupdateSiteGroup" method="post" action="/api/siteGroup/update_sitegroup" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detailSiteGroup.data" dmx-on:success="notifies1.success('Site Group updated successfully');connectSiteGroup.load({})">
+                            <input type="hidden" name="siteGroupId" id="upd_siteGroupId" dmx-bind:value="data_detailSiteGroup.data.siteGroupId">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_orgId">Org</label>
+                                        <input type="number" class="form-control" id="upd_orgId" name="orgId" dmx-bind:value="data_detailSiteGroup.data.orgId" aria-describedby="upd_orgId_help" placeholder="Enter Org">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_siteGroupName">Site group name</label>
+                                        <input type="text" class="form-control" id="upd_siteGroupName" name="siteGroupName" dmx-bind:value="data_detailSiteGroup.data.siteGroupName" aria-describedby="upd_siteGroupName_help" placeholder="Enter Site group name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_siteGroupDis">Site group dis</label>
+                                        <input type="text" class="form-control" id="upd_siteGroupDis" name="siteGroupDis" dmx-bind:value="data_detailSiteGroup.data.siteGroupDis" aria-describedby="upd_siteGroupDis_help" placeholder="Enter Site group dis">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_siteGroupMedia">Site group media</label>
+                                        <input type="text" class="form-control" id="upd_siteGroupMedia" name="siteGroupMedia" dmx-bind:value="data_detailSiteGroup.data.siteGroupMedia" aria-describedby="upd_siteGroupMedia_help" placeholder="Enter Site group media">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <button type="submit" class="btn btn-primary text-center" dmx-bind:value="data_detailSiteGroup.data.Save" dmx-bind:disabled="state.executing">Save <span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Site Group</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="formAddSteGroup" method="post" action="/api/siteGroup/add_siteGroup" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:success="notifies1.success('Site Group added successfully');connectSiteGroup.load({});modal1.toggle()">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_orgId">Org</label>
+                                        <select id="ins_add_orgId" class="form-select" dmx-bind:options="connectOrg.data.queryOrg" optiontext="orgName" optionvalue="orgId" name="orgId">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteGroupName">Site group name</label>
+                                        <input type="text" class="form-control" id="ins_add_siteGroupName" name="siteGroupName" aria-describedby="ins_add_siteGroupName_help" placeholder="Enter Site group name" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteGroupDis">Site group dis</label>
+                                        <input type="text" class="form-control" id="ins_add_siteGroupDis" name="siteGroupDis" aria-describedby="ins_add_siteGroupDis_help" placeholder="Enter Site group dis" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteGroupMedia">Site group media</label>
+                                        <input type="text" class="form-control" id="ins_add_siteGroupMedia" name="siteGroupMedia" aria-describedby="ins_add_siteGroupMedia_help" placeholder="Enter Site group media">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="formAddSteGroup.reset()">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3 text-center">
+                                        <button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2 class="text-center">Site Group</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-end">
+        <button id="btn1" class="btn text-bg-secondary" data-bs-toggle="modal" data-bs-target="#modal1">Add new SiteGroup</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Site group</th>
+                        <th>Org</th>
+                        <th>Site group name</th>
+                        <th>Site group dis</th>
+                        <th>Site group media</th>
+                        <th>Edit
+                        </th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSiteGroup.data.query_siteGroup" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="siteGroupId"></td>
+                        <td dmx-text="orgId"></td>
+                        <td dmx-text="siteGroupName"></td>
+                        <td dmx-text="siteGroupDis"></td>
+                        <td dmx-text="siteGroupMedia"></td>
+                        <td dmx-text="'Edit'" dmx-on:click="modal2.show();data_detailSiteGroup.select(siteGroupId)"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/siteGroup">

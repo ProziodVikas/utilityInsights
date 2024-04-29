@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_siteGroup",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [],
+          "params": [],
+          "table": {
+            "name": "siteGroup"
+          },
+          "primary": "siteGroupId",
+          "joins": [],
+          "query": "select * from `siteGroup`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "siteGroupId"
+        },
+        {
+          "type": "number",
+          "name": "orgId"
+        },
+        {
+          "type": "text",
+          "name": "siteGroupName"
+        },
+        {
+          "type": "text",
+          "name": "siteGroupDis"
+        },
+        {
+          "type": "text",
+          "name": "siteGroupMedia"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

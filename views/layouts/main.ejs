@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+  <base href="/">
+  <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+  <meta charset="UTF-8">
+  <title>Untitled Document</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/bootstrap/5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/dmxAppConnect/dmxBootstrap5Navigation/dmxBootstrap5Navigation.js" defer></script>
+  <script src="/dmxAppConnect/dmxRouting/dmxRouting.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Offcanvas/dmxBootstrap5Offcanvas.js" defer></script>
+  <script src="/dmxAppConnect/dmxTyped/dmxTyped.js" defer></script>
+  <script src="/dmxAppConnect/dmxTyped/typed.min.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxNotifications/dmxNotifications.css" />
+  <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxBootstrap5TableGenerator/dmxBootstrap5TableGenerator.css" />
+  <script src="/dmxAppConnect/dmxBootstrap5Tooltips/dmxBootstrap5Tooltips.js" defer></script>
+  <script src="/dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxValidator/dmxValidator.css" />
+  <script src="/dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
+  <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxAnimateCSS/animate.min.css" />
+  <script src="/dmxAppConnect/dmxAnimateCSS/dmxAnimateCSS.js" defer></script>
+</head>
+<style>
+  .offcanvas-start.offcanvas-lg {
+    height: 100vh;
+    background-color: #163A5A;
+  }
+</style>
+
+<body is="dmx-app" id="main">
+  <header class="">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-expand-lg  justify-content-between">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="navbar1_collapse" aria-expanded="false" aria-label="offcanvasNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row row-cols-lg-6">
+      <div class="w-auto h-auto shadow-sm border-1 fw-bold text-lg-start lh-base bg-primary col-lg-auto col-lg-2">
+        <div class="offcanvas-start offcanvas-lg" id="offcanvasNav" is="dmx-bs5-offcanvas" tabindex="-1">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Offcanvas title</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#offcanvasNav"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="row">
+              <div class="col">
+                <nav class="navbar">
+                  <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/organization">Organization</a>
+                    <a class="nav-item nav-link" href="/siteGroup">Site Group</a><a class="nav-item nav-link" href="/site">Site</a>
+
+
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 bg-opacity-25 bg-body-secondary col-lg-10">
+        <div is="dmx-view" id="content">
+          <%- await include(content, locals); %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

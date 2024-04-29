@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "orgDis",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "orgDis"
+      },
+      {
+        "type": "text",
+        "fieldName": "orgName",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "orgName"
+      },
+      {
+        "type": "text",
+        "fieldName": "orgMedia",
+        "name": "orgMedia"
+      },
+      {
+        "type": "number",
+        "fieldName": "orgId",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "orgId"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update_org",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "org",
+              "column": "orgDis",
+              "type": "text",
+              "value": "{{$_POST.orgDis}}"
+            },
+            {
+              "table": "org",
+              "column": "orgName",
+              "type": "text",
+              "value": "{{$_POST.orgName}}"
+            },
+            {
+              "table": "org",
+              "column": "orgMedia",
+              "type": "text",
+              "value": "{{$_POST.orgMedia}}"
+            }
+          ],
+          "table": "org",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "orgId",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.orgId}}",
+                "data": {
+                  "column": "orgId"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "orgId",
+          "query": "update `org` set `orgDis` = ?, `orgName` = ?, `orgMedia` = ? where `orgId` = ?",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgDis}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.orgName}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.orgMedia}}",
+              "test": ""
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_POST.orgId}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "siteGroupName",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "siteGroupName"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteGroupDis",
+        "options": {
+          "rules": {
+            "core:required": {}
+          }
+        },
+        "name": "siteGroupDis"
+      },
+      {
+        "type": "text",
+        "fieldName": "siteGroupMedia",
+        "name": "siteGroupMedia"
+      },
+      {
+        "type": "number",
+        "fieldName": "orgId",
+        "name": "orgId"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert_siteGroup",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "siteGroup",
+              "column": "orgId",
+              "type": "number",
+              "value": "{{$_POST.orgId}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupName",
+              "type": "text",
+              "value": "{{$_POST.siteGroupName}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupDis",
+              "type": "text",
+              "value": "{{$_POST.siteGroupDis}}"
+            },
+            {
+              "table": "siteGroup",
+              "column": "siteGroupMedia",
+              "type": "text",
+              "value": "{{$_POST.siteGroupMedia}}"
+            }
+          ],
+          "table": "siteGroup",
+          "returning": "siteGroupId",
+          "query": "insert into `siteGroup` (`orgId`, `siteGroupDis`, `siteGroupMedia`, `siteGroupName`) values (?, ?, ?, ?) returning `siteGroupId`",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgId}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupName}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupDis}}",
+              "test": ""
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.siteGroupMedia}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

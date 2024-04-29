@@ -1,0 +1,274 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="site" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxValidator:{},dmxNotifications:{},dmxFormatter:{}}" -->
+<dmx-serverconnect id="connectSiteGroup" url="/api/siteGroup/read_siteGroup"></dmx-serverconnect>
+<dmx-serverconnect id="connectOrg" url="/api/org/read_org"></dmx-serverconnect>
+<dmx-notifications id="notifies1"></dmx-notifications>
+
+<dmx-serverconnect id="connectSite" url="/api/site/read_site"></dmx-serverconnect>
+<dmx-data-detail id="data_detailSite" dmx-bind:data="connectSite.data.query_site" key="siteId"></dmx-data-detail>
+
+<meta name="ac:route" content="/site">
+<div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Site</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="add_site_form" method="post" action="/api/site/add_site" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:success="notifies1.success('Site added successfully');connectSite.load({});modal1.toggle()">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_orgId">Org</label>
+                                        <select id="ins_add_orgId" class="form-select" dmx-bind:options="connectOrg.data.queryOrg" optiontext="orgName" optionvalue="orgId" name="orgId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteGroupId">Site group</label>
+                                        <select id="ins_add_siteGroupId" class="form-select" dmx-bind:options="connectSiteGroup.data.query_siteGroup" optiontext="siteGroupName" optionvalue="siteGroupId" name="siteGroupId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteName">Site name</label>
+                                        <input type="text" class="form-control" id="ins_add_siteName" name="siteName" aria-describedby="ins_add_siteName_help" placeholder="Enter Site name" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteDis">Site dis</label>
+                                        <input type="text" class="form-control" id="ins_add_siteDis" name="siteDis" aria-describedby="ins_add_siteDis_help" placeholder="Enter Site dis">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteStartDate">Site start date</label>
+                                        <input type="date" class="form-control" id="ins_add_siteStartDate" name="siteStartDate" aria-describedby="ins_add_siteStartDate_help" placeholder="Enter Site start date" required="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_siteEndDate">Site end date</label>
+                                        <input type="date" class="form-control" id="ins_add_siteEndDate" name="siteEndDate" aria-describedby="ins_add_siteEndDate_help" placeholder="Enter Site end date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_area">Area</label>
+                                        <input type="number" class="form-control" id="ins_add_area" name="area" aria-describedby="ins_add_area_help" placeholder="Enter Area">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_contactName">Contact name</label>
+                                        <input type="text" class="form-control" id="ins_add_contactName" name="contactName" aria-describedby="ins_add_contactName_help" placeholder="Enter Contact name">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_contactPhone">Contact phone</label>
+                                        <input type="text" class="form-control" id="ins_add_contactPhone" name="contactPhone" aria-describedby="ins_add_contactPhone_help" placeholder="Enter Contact phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_contactEmail">Contact email</label>
+                                        <input type="text" class="form-control" id="ins_add_contactEmail" name="contactEmail" aria-describedby="ins_add_contactEmail_help" placeholder="Enter Contact email" required="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_street">Street</label>
+                                        <input type="text" class="form-control" id="ins_add_street" name="street" aria-describedby="ins_add_street_help" placeholder="Enter Street">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_city">City</label>
+                                        <input type="text" class="form-control" id="ins_add_city" name="city" aria-describedby="ins_add_city_help" placeholder="Enter City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_state">State</label>
+                                        <input type="text" class="form-control" id="ins_add_state" name="state" aria-describedby="ins_add_state_help" placeholder="Enter State" required="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_country">Country</label>
+                                        <input type="text" class="form-control" id="ins_add_country" name="country" aria-describedby="ins_add_country_help" placeholder="Enter Country" required="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_postalCode">Postal code</label>
+                                        <input type="number" class="form-control" id="ins_add_postalCode" name="postalCode" aria-describedby="ins_add_postalCode_help" placeholder="Enter Postal code" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_coord">Coord</label>
+                                        <input type="text" class="form-control" id="ins_add_coord" name="coord" aria-describedby="ins_add_coord_help" placeholder="Enter Coord">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_media">Media</label>
+                                        <input type="text" class="form-control" id="ins_add_media" name="media" aria-describedby="ins_add_media_help" placeholder="Enter Media">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_primaryFunction">Primary function</label>
+                                        <input type="text" class="form-control" id="ins_add_primaryFunction" name="primaryFunction" aria-describedby="ins_add_primaryFunction_help" placeholder="Enter Primary function">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_timeZone">Time zone</label>
+                                        <input type="text" class="form-control" id="ins_add_timeZone" name="timeZone" aria-describedby="ins_add_timeZone_help" placeholder="Enter Time zone">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_add_status">Status</label>
+                                        <select id="ins_add_status" class="form-select" name="status">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+
+                                <div class="col text-center">
+                                    <div class="form-group mb-3">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="form-group mb-3">
+                                        <button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h2 class="text-center">Site</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-end">
+        <button id="btn1" class="btn text-bg-secondary" data-bs-toggle="modal" data-bs-target="#modal1">Add Site</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="align-top">
+                    <tr>
+                        <th>Site</th>
+                        <th>Org</th>
+                        <th>Site Group</th>
+                        <th>Site Name</th>
+                        <th>Site description</th>
+                        <th class="w-auto">Site startDate</th>
+                        <th>Site endDate</th>
+                        <th>Area</th>
+                        <th>Contact Name</th>
+                        <th>Contact Phone</th>
+                        <th>Contact Email</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Postal Code</th>
+                        <th>Coord</th>
+                        <th>Media</th>
+                        <th>Primary Function</th>
+                        <th>Time Zone</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSite.data.query_site" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="siteId"></td>
+                        <td dmx-text="orgId"></td>
+                        <td dmx-text="siteGroupId"></td>
+                        <td dmx-text="siteName"></td>
+                        <td dmx-text="siteDis"></td>
+                        <td dmx-text="siteStartDate"></td>
+                        <td dmx-text="siteEndDate"></td>
+                        <td dmx-text="area"></td>
+                        <td dmx-text="contactName"></td>
+                        <td dmx-text="contactPhone"></td>
+                        <td dmx-text="contactEmail"></td>
+                        <td dmx-text="street"></td>
+                        <td dmx-text="city"></td>
+                        <td dmx-text="state"></td>
+                        <td dmx-text="country"></td>
+                        <td dmx-text="postalCode"></td>
+                        <td dmx-text="coord"></td>
+                        <td dmx-text="media"></td>
+                        <td dmx-text="primaryFunction"></td>
+                        <td dmx-text="timeZone"></td>
+                        <td dmx-text="status" dmx-class:table-success="status=='Active'"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
