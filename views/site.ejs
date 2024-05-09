@@ -181,19 +181,20 @@
 </div>
 <div class="row">
     <div class="col">
-        <h2 class="text-center">Site</h2>
+        <h4 class="fw-normal text-start">Site</h4>
     </div>
 </div>
-<div class="row">
+<div class="row lh-1">
     <div class="col text-end">
-        <button id="btn1" class="btn text-light bg-secondary" data-bs-toggle="modal" data-bs-target="#modal1">Add Site</button>
+        <button id="btn1" class="btn lh-1 btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modal1"><i class="fas fa-plus"></i>&nbsp;Add Site</button>
     </div>
 </div>
+
 <div class="row">
     <div class="col">
-        <div class="table-responsive">
+        <div class="table-responsive text-start small text-nowrap">
             <table class="table table-bordered table-hover">
-                <thead class="align-top">
+                <thead class="align-top small">
                     <tr>
                         <th>Site</th>
                         <th>Org</th>
@@ -218,7 +219,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSite.data.query_site" id="tableRepeat1">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSite.data.query_site" id="tableRepeat1" class="small">
                     <tr>
                         <td dmx-text="siteId"></td>
                         <td dmx-text="orgId"></td>

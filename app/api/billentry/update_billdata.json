@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "number",
+        "fieldName": "orgId",
+        "name": "orgId"
+      },
+      {
+        "type": "number",
+        "fieldName": "siteId",
+        "name": "siteId"
+      },
+      {
+        "type": "text",
+        "fieldName": "invoiceNumber",
+        "name": "invoiceNumber"
+      },
+      {
+        "type": "text",
+        "fieldName": "invoiceType",
+        "name": "invoiceType"
+      },
+      {
+        "type": "date",
+        "fieldName": "issueDate",
+        "name": "issueDate"
+      },
+      {
+        "type": "date",
+        "fieldName": "dueDate",
+        "name": "dueDate"
+      },
+      {
+        "type": "date",
+        "fieldName": "periodFrom",
+        "name": "periodFrom"
+      },
+      {
+        "type": "date",
+        "fieldName": "periodTo",
+        "name": "periodTo"
+      },
+      {
+        "type": "number",
+        "fieldName": "openingBalance",
+        "name": "openingBalance"
+      },
+      {
+        "type": "number",
+        "fieldName": "usage",
+        "name": "usage"
+      },
+      {
+        "type": "number",
+        "fieldName": "newChargesIncTax",
+        "name": "newChargesIncTax"
+      },
+      {
+        "type": "number",
+        "fieldName": "newChargesExTax",
+        "name": "newChargesExTax"
+      },
+      {
+        "type": "number",
+        "fieldName": "newCharges",
+        "name": "newCharges"
+      },
+      {
+        "type": "number",
+        "fieldName": "totalAmountDue",
+        "name": "totalAmountDue"
+      },
+      {
+        "type": "number",
+        "fieldName": "id",
+        "name": "id"
+      },
+      {
+        "type": "number",
+        "fieldName": "billAccountId",
+        "name": "billAccountId"
+      },
+      {
+        "type": "object",
+        "fieldName": "invoice",
+        "name": "invoice"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update_billdata",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "billAccount",
+              "column": "orgId",
+              "type": "number",
+              "value": "{{$_POST.orgId}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "siteId",
+              "type": "number",
+              "value": "{{$_POST.siteId}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "invoiceNumber",
+              "type": "text",
+              "value": "{{$_POST.invoiceNumber}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "invoiceType",
+              "type": "text",
+              "value": "{{$_POST.invoiceType}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "issueDate",
+              "type": "datetime",
+              "value": "{{$_POST.issueDate}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "dueDate",
+              "type": "datetime",
+              "value": "{{$_POST.dueDate}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "periodFrom",
+              "type": "datetime",
+              "value": "{{$_POST.periodFrom}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "periodTo",
+              "type": "datetime",
+              "value": "{{$_POST.periodTo}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "openingBalance",
+              "type": "number",
+              "value": "{{$_POST.openingBalance}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "usage",
+              "type": "number",
+              "value": "{{$_POST.usage}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "newChargesIncTax",
+              "type": "number",
+              "value": "{{$_POST.newChargesIncTax}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "newChargesExTax",
+              "type": "number",
+              "value": "{{$_POST.newChargesExTax}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "newCharges",
+              "type": "number",
+              "value": "{{$_POST.newCharges}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "totalAmountDue",
+              "type": "number",
+              "value": "{{$_POST.totalAmountDue}}"
+            },
+            {
+              "table": "billdata",
+              "column": "billAccountId",
+              "type": "number",
+              "value": "{{$_POST.billAccountId}}"
+            },
+            {
+              "table": "billdata",
+              "column": "invoice",
+              "type": "json",
+              "value": "{{$_POST.invoice}}"
+            }
+          ],
+          "table": "billdata",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.id}}",
+                "data": {
+                  "column": "id"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "id",
+          "query": "update `billdata` set `orgId` = ?, `siteId` = ?, `invoiceNumber` = ?, `invoiceType` = ?, `issueDate` = ?, `dueDate` = ?, `periodFrom` = ?, `periodTo` = ?, `openingBalance` = ?, `usage` = ?, `newChargesIncTax` = ?, `newChargesExTax` = ?, `newCharges` = ?, `totalAmountDue` = ?, `billAccountId` = ?, `invoice` = ? where `id` = ? returning `id`",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgId}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.siteId}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.invoiceNumber}}",
+              "test": ""
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.invoiceType}}",
+              "test": ""
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.issueDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P6",
+              "type": "expression",
+              "value": "{{$_POST.dueDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P7",
+              "type": "expression",
+              "value": "{{$_POST.periodFrom}}",
+              "test": ""
+            },
+            {
+              "name": ":P8",
+              "type": "expression",
+              "value": "{{$_POST.periodTo}}",
+              "test": ""
+            },
+            {
+              "name": ":P9",
+              "type": "expression",
+              "value": "{{$_POST.openingBalance}}",
+              "test": ""
+            },
+            {
+              "name": ":P10",
+              "type": "expression",
+              "value": "{{$_POST.usage}}",
+              "test": ""
+            },
+            {
+              "name": ":P11",
+              "type": "expression",
+              "value": "{{$_POST.newChargesIncTax}}",
+              "test": ""
+            },
+            {
+              "name": ":P12",
+              "type": "expression",
+              "value": "{{$_POST.newChargesExTax}}",
+              "test": ""
+            },
+            {
+              "name": ":P13",
+              "type": "expression",
+              "value": "{{$_POST.newCharges}}",
+              "test": ""
+            },
+            {
+              "name": ":P14",
+              "type": "expression",
+              "value": "{{$_POST.totalAmountDue}}",
+              "test": ""
+            },
+            {
+              "name": ":P15",
+              "type": "expression",
+              "value": "{{$_POST.billAccountId}}",
+              "test": ""
+            },
+            {
+              "name": ":P16",
+              "type": "expression",
+              "value": "{{$_POST.invoice}}",
+              "test": ""
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P17",
+              "value": "{{$_POST.id}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

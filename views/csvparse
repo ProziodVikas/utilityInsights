@@ -1,0 +1,34 @@
+// JavaScript Document
+// JavaScript function to parse CSV data
+const csvFilePath = "../public/uploads/yourfile.csv";
+
+function parseCSV(csvData) {
+    // Split the data into rows
+    const rows = csvData.trim().split("\n");
+
+    // Assuming the first row contains headers
+    const headers = rows[0].split(",");
+
+    // Array to hold each row as an object
+    const result = [];
+
+    // Iterate over each row starting from the second row
+    for (let i = 1; i < rows.length; i++) {
+        const rowData = rows[i].split(",");
+        const rowObject = {};
+
+        // Create key-value pairs for each column based on headers
+        headers.forEach((header, index) => {
+            rowObject[header.trim()] = rowData[index].trim();
+        });
+
+        // Add the object to the result array
+        result.push(rowObject);
+    }
+
+    return result;
+}
+
+// Use this function to parse the CSV data
+return parseCSV(csvData);
+

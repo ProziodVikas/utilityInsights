@@ -1,0 +1,45 @@
+<!-- Wappler include head-page="layouts/layout2" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="originBills" appConnect="local" components="{dmxBootstrap5Navigation:{},dmxFormatter:{}}" -->
+<div class="container ">
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="nav w-100">
+                <a class="nav-item nav-link" href="/billList">Back</a>
+            </div>
+        </div>
+        <div class="col-lg-2 offset-lg-3">
+            <h4 class="fw-bold text-nowrap text-lg-center">Bill Upload</h4>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <form id="form1" method="post" action="/api/file/csvfile" is="dmx-serverconnect-form">
+
+                        <div class="form-group mb-3">
+                            <input id="file1" name="file1" type="file" class="form-control" dmx-on:blur="form1.submit()">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label for="input1" class="form-label">Some text</label>
+                        <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Enter some text" dmx-bind:value="(form1.data.csvImport.values(`_['NMI : MIRN : DPI']`) / 3.toFixed(0))">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/AGLBills">

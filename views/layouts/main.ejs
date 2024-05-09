@@ -5,7 +5,7 @@
   <base href="/">
   <script src="/dmxAppConnect/dmxAppConnect.js"></script>
   <meta charset="UTF-8">
-  <title>Untitled Document</title>
+  <title>Utility Insights</title>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,13 +28,18 @@
   <link rel="stylesheet" href="/dmxAppConnect/dmxAnimateCSS/animate.min.css" />
   <script src="/dmxAppConnect/dmxAnimateCSS/dmxAnimateCSS.js" defer></script>
   <script src="/dmxAppConnect/dmxStateManagement/dmxStateManagement.js" defer></script>
+  <!-- <style>
+    .offcanvas-start.offcanvas-lg {
+      height: 100vh;
+    }
+  </style> -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfmake@0.2.9/build/pdfmake.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdfmake@0.2.9/build/vfs_fonts.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-pdfmake@2.5.2/browser.min.js" defer></script>
+  <script src="/dmxAppConnect/dmxPdfCreator/dmxPdfCreator.js" defer></script>
+  <script src="/dmxAppConnect/dmxS3Upload/dmxS3Upload.js" defer></script>
+  <script src="https://js.stripe.com/v3/pricing-table.js" defer></script>
 </head>
-<style>
-  .offcanvas-start.offcanvas-lg {
-    height: 100vh;
-    background-color: #163A5A;
-  }
-</style>
 
 <body is="dmx-app" id="main">
   <header class="">
@@ -51,27 +56,61 @@
     </div>
   </header>
   <div class="container">
+
     <div class="row row-cols-lg-6">
-      <div class="w-auto h-auto shadow-sm border-1 fw-bold text-lg-start lh-base bg-primary col-lg-auto col-lg-2">
+      <div style="background-color: #163a5a; height: 100vh;">
         <div class="offcanvas-start offcanvas-lg" id="offcanvasNav" is="dmx-bs5-offcanvas" tabindex="-1">
+
           <div class="offcanvas-header">
             <h5 class="offcanvas-title">Offcanvas title</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#offcanvasNav"></button>
           </div>
+
           <div class="offcanvas-body">
-            <div class="row">
-              <div class="col">
-                <nav class="navbar">
-                  <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="/organization">Organization</a>
-                    <a class="nav-item nav-link" href="/siteGroup">Site Group</a><a class="nav-item nav-link" href="/site">Site</a>
+            <div class="row row-cols-lg-6">
+              <div class="col gy-lg-1 style3 w-auto gx-lg-5">
+                <img src="/assets/images/proziod_logo.png" class="style2 img-fluid h-auto w-auto" alt="Proziod Logo">
 
 
-                  </div>
-                </nav>
+
+
               </div>
             </div>
           </div>
+          <div class="offcanvas-body">
+
+            <div class="row">
+              <div class="col">
+
+
+
+                <div class="row">
+                  <div class="col-break w-100">
+                    <nav class="navbar small">
+                      <div class="navbar-nav">
+                        <a class="nav-item nav-link active text-light" href="/organization">Organization</a>
+                        <a class="nav-item nav-link text-light" href="/siteGroup">Site Group</a><a class="nav-item nav-link text-light" href="/site">Site</a>
+                        <a class="nav-item nav-link text-light" href="/billAccount">Bill Account</a>
+                        <div class="nav-item dropdown" style="">
+                          <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" id="dropdown1" role="button" aria-haspopup="true" aria-expanded="false">Bills</a>
+                          <div class="dropdown-menu" aria-labelledby="dropdown1" style="background-color: #163a5a;">
+                            <a class="dropdown-item small" href="/bills">Origin Bill Upload</a>
+                            <a class="dropdown-item small" href="/originBills">AGL Bill Upload</a>
+                            <a class="dropdown-item small" href="/billList">Bill List</a>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
       <div class="col-12 bg-opacity-25 bg-body-secondary col-lg-10">
@@ -81,6 +120,7 @@
       </div>
     </div>
   </div>
+
 
   <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>

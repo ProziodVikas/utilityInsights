@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/originBills.ejs",
+      "linkedForm": "form1"
+    },
+    "$_POST": [
+      {
+        "type": "file",
+        "fieldName": "file1",
+        "name": "file1",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "excelupload",
+        "module": "upload",
+        "action": "upload",
+        "options": {
+          "replaceSpace": true,
+          "overwrite": true,
+          "path": "/public/uploads",
+          "fields": "{{$_POST.file1}}",
+          "template": "csdata"
+        },
+        "output": true,
+        "meta": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "name": "csvImport",
+        "module": "import",
+        "action": "csv",
+        "options": {
+          "path": "{{excelupload.path}}",
+          "header": true,
+          "fields": [
+            "Total Amount"
+          ]
+        },
+        "meta": [
+          {
+            "name": "Total Amount",
+            "type": "text"
+          }
+        ],
+        "outputType": "array",
+        "output": true
+      }
+    ]
+  }
+}

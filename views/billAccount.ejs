@@ -1,0 +1,212 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="billAccount" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxFormatter:{}}" -->
+<dmx-serverconnect id="connectSite" url="/api/site/read_site" dmx-param:filter="modal1.billAcc_addform.ins_billAcc_orgId.value"></dmx-serverconnect>
+<dmx-data-detail id="data_detailsite" dmx-bind:data="connectSite.data.query_site_filter" key="siteId"></dmx-data-detail>
+<dmx-serverconnect id="connectOrg" url="/api/org/read_org"></dmx-serverconnect>
+
+
+
+
+<dmx-serverconnect id="connectBillAccount" url="/api/billAccount/read_billAccount"></dmx-serverconnect>
+<dmx-data-detail id="data_detailbillAccount" dmx-bind:data="connectBillAccount.data.query_billAccount" key="id"></dmx-data-detail>
+<dmx-notifications id="notifies1"></dmx-notifications>
+<div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Bill Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col small">
+                        <form is="dmx-serverconnect-form" id="billAcc_addform" method="post" action="/api/billAccount/add_billAccount" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:success="notifies1.success('Bill Account added successfully');modal1.toggle();connectBillAccount.load({})">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_orgId">Org</label>
+                                        <select id="ins_billAcc_orgId" class="form-select form-select-sm" name="orgId" dmx-bind:options="connectOrg.data.queryOrg" optiontext="orgDis" optionvalue="orgId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_siteId">Site</label>
+                                        <select id="ins_billAcc_siteId" class="form-select form-select-sm" name="siteId" dmx-bind:options="connectSite.data.query_site" optiontext="siteDis" optionvalue="siteId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_accountNumber">Account number</label>
+                                        <input type="text" class="form-control form-control-sm" id="ins_billAcc_accountNumber" name="accountNumber" aria-describedby="ins_billAcc_accountNumber_help" placeholder="Enter Account number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_billFrequency">Bill frequency</label>
+                                        <select id="ins_billAcc_billFrequency" class="form-select form-select-sm" name="billFrequency">
+                                            <option value="monthly">Monthly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                            <option value="biMonthly">Bi Monthly</option>
+                                            <option value="biAnnually">Bi Annually</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_vendor">Vendor</label>
+                                        <input type="text" class="form-control form-control-sm" id="ins_billAcc_vendor" name="vendor" aria-describedby="ins_billAcc_vendor_help" placeholder="Enter Vendor">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_primaryFunction">Primary function</label>
+                                        <select id="ins_billAcc_primaryFunction" class="form-select form-select-sm" name="primaryFunction">
+                                            <option value="elec">Electriclity</option>
+                                            <option value="water">Water</option>
+                                            <option value="gas">Gas</option>
+                                            <option value="waste">Waste</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_status">Status</label>
+                                        <select id="ins_billAcc_status" class="form-select form-select-sm" name="status">
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_commissionDate">Commission date</label>
+                                        <input type="date" class="form-control form-control-sm" id="ins_billAcc_commissionDate" name="commissionDate" aria-describedby="ins_billAcc_commissionDate_help" placeholder="Enter Commission date">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_decommissionDate">Decommission date</label>
+                                        <input type="date" class="form-control form-control-sm" id="ins_billAcc_decommissionDate" name="decommissionDate" aria-describedby="ins_billAcc_decommissionDate_help" placeholder="Enter Decommission date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_installationDate">Installation date</label>
+                                        <input type="date" class="form-control form-control-sm" id="ins_billAcc_installationDate" name="installationDate" aria-describedby="ins_billAcc_installationDate_help" placeholder="Enter Installation date">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_commissionedBy">Commissioned by</label>
+                                        <input type="text" class="form-control form-control-sm" id="ins_billAcc_commissionedBy" name="commissionedBy" aria-describedby="ins_billAcc_commissionedBy_help" placeholder="Enter Commissioned by">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_unit">Unit</label>
+                                        <input type="text" class="form-control form-control-sm" id="ins_billAcc_unit" name="unit" aria-describedby="ins_billAcc_unit_help" placeholder="Enter Unit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col-3">
+                                    <div class="form-group mb-3">
+                                        <label for="ins_billAcc_tz">Tz</label>
+                                        <input type="text" class="form-control form-control-sm" id="ins_billAcc_tz" name="tz" aria-describedby="ins_billAcc_tz_help" placeholder="Enter Tz">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3 text-center">
+                                <div class="col"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<header class="navbar-dark text-end">
+    <div class="row">
+        <div class="col">
+            <h4 class="fw-normal text-start">Bill Account</h4>
+        </div>
+    </div>
+</header>
+<div class="row">
+    <div class="col">
+        <div class="row text-end">
+            <div class="col small"><button id="btn1" class="btn btn-sm" dmx-on:click="modal1.toggle()">Add Bill Account</button></div>
+        </div>
+
+        <div class="table-responsive text-start text-nowrap small">
+            <table class="table table-bordered table-hover small">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Org</th>
+                        <th>Site</th>
+                        <th>Account number</th>
+                        <th>Bill frequency</th>
+                        <th>Vendor</th>
+                        <th>Primary function</th>
+                        <th>Status</th>
+                        <th>Commission date</th>
+                        <th>Decommission date</th>
+                        <th>Installation date</th>
+                        <th>Commissioned by</th>
+                        <th>Unit</th>
+                        <th>Tz</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectBillAccount.data.query_billAccount" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="orgId"></td>
+                        <td dmx-text="siteId"></td>
+                        <td dmx-text="accountNumber"></td>
+                        <td dmx-text="billFrequency"></td>
+                        <td dmx-text="vendor"></td>
+                        <td dmx-text="primaryFunction"></td>
+                        <td dmx-text="status"></td>
+                        <td dmx-text="commissionDate"></td>
+                        <td dmx-text="decommissionDate"></td>
+                        <td dmx-text="installationDate"></td>
+                        <td dmx-text="commissionedBy"></td>
+                        <td dmx-text="unit"></td>
+                        <td dmx-text="tz"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/billAccount">

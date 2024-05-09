@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "number",
+        "fieldName": "orgId",
+        "name": "orgId"
+      },
+      {
+        "type": "number",
+        "fieldName": "siteId",
+        "name": "siteId"
+      },
+      {
+        "type": "text",
+        "fieldName": "accountNumber",
+        "name": "accountNumber"
+      },
+      {
+        "type": "text",
+        "fieldName": "billFrequency",
+        "name": "billFrequency"
+      },
+      {
+        "type": "text",
+        "fieldName": "vendor",
+        "name": "vendor"
+      },
+      {
+        "type": "text",
+        "fieldName": "primaryFunction",
+        "name": "primaryFunction"
+      },
+      {
+        "type": "text",
+        "fieldName": "status",
+        "name": "status"
+      },
+      {
+        "type": "date",
+        "fieldName": "commissionDate",
+        "name": "commissionDate"
+      },
+      {
+        "type": "date",
+        "fieldName": "decommissionDate",
+        "name": "decommissionDate"
+      },
+      {
+        "type": "date",
+        "fieldName": "installationDate",
+        "name": "installationDate"
+      },
+      {
+        "type": "text",
+        "fieldName": "commissionedBy",
+        "name": "commissionedBy"
+      },
+      {
+        "type": "text",
+        "fieldName": "unit",
+        "name": "unit"
+      },
+      {
+        "type": "text",
+        "fieldName": "tz",
+        "name": "tz"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert_billAccount",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "billAccount",
+              "column": "orgId",
+              "type": "number",
+              "value": "{{$_POST.orgId}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "siteId",
+              "type": "number",
+              "value": "{{$_POST.siteId}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "accountNumber",
+              "type": "text",
+              "value": "{{$_POST.accountNumber}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "billFrequency",
+              "type": "text",
+              "value": "{{$_POST.billFrequency}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "vendor",
+              "type": "text",
+              "value": "{{$_POST.vendor}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "primaryFunction",
+              "type": "text",
+              "value": "{{$_POST.primaryFunction}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "status",
+              "type": "text",
+              "value": "{{$_POST.status}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "commissionDate",
+              "type": "date",
+              "value": "{{$_POST.commissionDate}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "decommissionDate",
+              "type": "date",
+              "value": "{{$_POST.decommissionDate}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "installationDate",
+              "type": "date",
+              "value": "{{$_POST.installationDate}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "commissionedBy",
+              "type": "text",
+              "value": "{{$_POST.commissionedBy}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "unit",
+              "type": "text",
+              "value": "{{$_POST.unit}}"
+            },
+            {
+              "table": "billAccount",
+              "column": "tz",
+              "type": "text",
+              "value": "{{$_POST.tz}}"
+            }
+          ],
+          "table": "billAccount",
+          "returning": "id",
+          "query": "insert into `billAccount` (`accountNumber`, `billFrequency`, `commissionDate`, `commissionedBy`, `decommissionDate`, `installationDate`, `orgId`, `primaryFunction`, `siteId`, `status`, `tz`, `unit`, `vendor`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.orgId}}",
+              "test": ""
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.siteId}}",
+              "test": ""
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.accountNumber}}",
+              "test": ""
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.billFrequency}}",
+              "test": ""
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.vendor}}",
+              "test": ""
+            },
+            {
+              "name": ":P6",
+              "type": "expression",
+              "value": "{{$_POST.primaryFunction}}",
+              "test": ""
+            },
+            {
+              "name": ":P7",
+              "type": "expression",
+              "value": "{{$_POST.status}}",
+              "test": ""
+            },
+            {
+              "name": ":P8",
+              "type": "expression",
+              "value": "{{$_POST.commissionDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P9",
+              "type": "expression",
+              "value": "{{$_POST.decommissionDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P10",
+              "type": "expression",
+              "value": "{{$_POST.installationDate}}",
+              "test": ""
+            },
+            {
+              "name": ":P11",
+              "type": "expression",
+              "value": "{{$_POST.commissionedBy}}",
+              "test": ""
+            },
+            {
+              "name": ":P12",
+              "type": "expression",
+              "value": "{{$_POST.unit}}",
+              "test": ""
+            },
+            {
+              "name": ":P13",
+              "type": "expression",
+              "value": "{{$_POST.tz}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ],
+      "output": true
+    }
+  }
+}

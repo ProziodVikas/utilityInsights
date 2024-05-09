@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/originBills.ejs",
+      "linkedForm": "form1"
+    },
+    "$_POST": [
+      {
+        "type": "file",
+        "fieldName": "file1",
+        "name": "file1",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "upload",
+        "module": "upload",
+        "action": "upload",
+        "options": {
+          "fields": "{{$_POST.file1}}",
+          "path": "/public/uploads",
+          "template": "xmldata",
+          "replaceSpace": true
+        },
+        "meta": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "file",
+        "output": true
+      },
+      {
+        "name": "xmlImport",
+        "module": "import",
+        "action": "xml",
+        "options": {
+          "path": "{{upload.path}}",
+          "fields": [
+            "NMI",
+            "GST",
+            "Usage Charges (ex GST)",
+            "Total Amount"
+          ]
+        },
+        "meta": [
+          {
+            "name": "NMI",
+            "type": "text"
+          },
+          {
+            "name": "GST",
+            "type": "text"
+          },
+          {
+            "name": "Usage Charges (ex GST)",
+            "type": "text"
+          },
+          {
+            "name": "Total Amount",
+            "type": "text"
+          }
+        ],
+        "outputType": "array",
+        "output": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "fieldName": "filter",
+        "name": "filter"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_AC_filter",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [],
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.filter}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "billAccount"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "billAccount.orgId",
+                "field": "billAccount.orgId",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_GET.filter}}",
+                "data": {
+                  "table": "billAccount",
+                  "column": "orgId",
+                  "type": "number",
+                  "columnObj": {
+                    "type": "reference",
+                    "primary": false,
+                    "unique": false,
+                    "nullable": true,
+                    "references": "orgId",
+                    "inTable": "org",
+                    "referenceType": "integer",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "name": "orgId"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "select * from `billAccount` where `billAccount`.`orgId` = ?"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "number",
+          "name": "orgId"
+        },
+        {
+          "type": "number",
+          "name": "siteId"
+        },
+        {
+          "type": "text",
+          "name": "accountNumber"
+        },
+        {
+          "type": "text",
+          "name": "billFrequency"
+        },
+        {
+          "type": "text",
+          "name": "vendor"
+        },
+        {
+          "type": "text",
+          "name": "primaryFunction"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "date",
+          "name": "commissionDate"
+        },
+        {
+          "type": "date",
+          "name": "decommissionDate"
+        },
+        {
+          "type": "date",
+          "name": "installationDate"
+        },
+        {
+          "type": "text",
+          "name": "commissionedBy"
+        },
+        {
+          "type": "text",
+          "name": "unit"
+        },
+        {
+          "type": "text",
+          "name": "tz"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/bills.ejs",
+      "linkedForm": "form1"
+    },
+    "$_POST": [
+      {
+        "type": "file",
+        "fieldName": "input2",
+        "name": "input2",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "csvImport",
+      "module": "import",
+      "action": "csv",
+      "options": {
+        "path": "/public/uploads/",
+        "fields": [
+          "Total GST"
+        ],
+        "header": true
+      },
+      "meta": [
+        {
+          "name": "Total GST",
+          "type": "text"
+        }
+      ],
+      "outputType": "array",
+      "output": true
+    }
+  }
+}

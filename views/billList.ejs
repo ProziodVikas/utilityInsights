@@ -1,0 +1,223 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="billList" appConnect="local" components="{dmxDataTraversal:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{}}" -->
+<div class="modal" id="updateBillEntrymodal" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Bill</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form is="dmx-serverconnect-form" id="billdataupdate_form" method="post" action="/api/billentry/update_billdata" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detailBillList.data">
+                            <input type="hidden" name="id" id="upd_billdata_id" dmx-bind:value="data_detailBillList.data.id">
+
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_orgId">Org</label>
+                                        <input type="number" class="form-control" id="upd_billdata_orgId" name="orgId" dmx-bind:value="data_detailBillList.data.orgId" aria-describedby="upd_billdata_orgId_help" placeholder="Enter Org">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_siteId">Site</label>
+                                        <input type="number" class="form-control" id="upd_billdata_siteId" name="siteId" dmx-bind:value="data_detailBillList.data.siteId" aria-describedby="upd_billdata_siteId_help" placeholder="Enter Site">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_invoiceNumber">Invoice number</label>
+                                        <input type="text" class="form-control" id="upd_billdata_invoiceNumber" name="invoiceNumber" dmx-bind:value="data_detailBillList.data.invoiceNumber" aria-describedby="upd_billdata_invoiceNumber_help" placeholder="Enter Invoice number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_invoiceType">Invoice type</label>
+                                        <input type="text" class="form-control" id="upd_billdata_invoiceType" name="invoiceType" dmx-bind:value="data_detailBillList.data.invoiceType" aria-describedby="upd_billdata_invoiceType_help" placeholder="Enter Invoice type">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_issueDate">Issue date</label>
+                                        <input type="date" class="form-control" id="upd_billdata_issueDate" name="issueDate" dmx-bind:value="data_detailBillList.data.issueDate" aria-describedby="upd_billdata_issueDate_help" placeholder="Enter Issue date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_dueDate">Due date</label>
+                                        <input type="date" class="form-control" id="upd_billdata_dueDate" name="dueDate" dmx-bind:value="data_detailBillList.data.dueDate" aria-describedby="upd_billdata_dueDate_help" placeholder="Enter Due date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_periodFrom">Period from</label>
+                                        <input type="date" class="form-control" id="upd_billdata_periodFrom" name="periodFrom" dmx-bind:value="data_detailBillList.data.periodFrom" aria-describedby="upd_billdata_periodFrom_help" placeholder="Enter Period from">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_periodTo">Period to</label>
+                                        <input type="date" class="form-control" id="upd_billdata_periodTo" name="periodTo" dmx-bind:value="data_detailBillList.data.periodTo" aria-describedby="upd_billdata_periodTo_help" placeholder="Enter Period to">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_openingBalance">Opening balance</label>
+                                        <input type="number" class="form-control" id="upd_billdata_openingBalance" name="openingBalance" dmx-bind:value="data_detailBillList.data.openingBalance" aria-describedby="upd_billdata_openingBalance_help" placeholder="Enter Opening balance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_usage">Usage</label>
+                                        <input type="number" class="form-control" id="upd_billdata_usage" name="usage" dmx-bind:value="data_detailBillList.data.usage" aria-describedby="upd_billdata_usage_help" placeholder="Enter Usage">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_newChargesIncTax">New charges inc tax</label>
+                                        <input type="number" class="form-control" id="upd_billdata_newChargesIncTax" name="newChargesIncTax" dmx-bind:value="data_detailBillList.data.newChargesIncTax" aria-describedby="upd_billdata_newChargesIncTax_help" placeholder="Enter New charges inc tax">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_newChargesExTax">New charges ex tax</label>
+                                        <input type="number" class="form-control" id="upd_billdata_newChargesExTax" name="newChargesExTax" dmx-bind:value="data_detailBillList.data.newChargesExTax" aria-describedby="upd_billdata_newChargesExTax_help" placeholder="Enter New charges ex tax">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_newCharges">New charges</label>
+                                        <input type="number" class="form-control" id="upd_billdata_newCharges" name="newCharges" dmx-bind:value="data_detailBillList.data.newCharges" aria-describedby="upd_billdata_newCharges_help" placeholder="Enter New charges">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_billdata_totalAmountDue">Total amount due</label>
+                                        <input type="number" class="form-control" id="upd_billdata_totalAmountDue" name="totalAmountDue" dmx-bind:value="data_detailBillList.data.totalAmountDue" aria-describedby="upd_billdata_totalAmountDue_help" placeholder="Enter Total amount due">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <button type="submit" class="btn btn-primary" dmx-bind:value="data_detailBillList.data.Save" dmx-bind:disabled="state.executing">Save <span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<header class="navbar-dark text-end">
+    <div class="row">
+        <div class="col">
+            <h4 class="fw-normal text-start">Bill List</h4>
+        </div>
+    </div>
+</header>
+<dmx-serverconnect id="connectBillList" url="/api/billentry/read_billdata"></dmx-serverconnect>
+<dmx-data-detail id="data_detailBillList" dmx-bind:data="connectBillList.data.query_readbilldata" key="id"></dmx-data-detail>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive small text-start text-nowrap">
+            <table class="table table-bordered table-hover small">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Org</th>
+                        <th>Site</th>
+                        <th>Invoice number</th>
+                        <th>Invoice type</th>
+                        <th>Issue date</th>
+                        <th>Due date</th>
+                        <th>Period from</th>
+                        <th>Period to</th>
+                        <th>Opening balance</th>
+                        <th>Usage</th>
+                        <th>New charges inc tax</th>
+                        <th>New charges ex tax</th>
+                        <th>New charges</th>
+                        <th>Total amount due</th>
+                        <th>Invoice</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectBillList.data.query_readbilldata" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="orgId"></td>
+                        <td dmx-text="siteId"></td>
+                        <td dmx-text="invoiceNumber"></td>
+                        <td dmx-text="invoiceType"></td>
+                        <td dmx-text="issueDate"></td>
+                        <td dmx-text="dueDate"></td>
+                        <td dmx-text="periodFrom"></td>
+                        <td dmx-text="periodTo"></td>
+                        <td dmx-text="openingBalance"></td>
+                        <td dmx-text="usage"></td>
+                        <td dmx-text="newChargesIncTax"></td>
+                        <td dmx-text="newChargesExTax"></td>
+                        <td dmx-text="newCharges"></td>
+                        <td dmx-text="totalAmountDue"></td>
+                        <td dmx-text="invoice"></td>
+                        <td dmx-text="'Edit'" dmx-on:click="data_detailBillList.select(id);updateBillEntrymodal.show()"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/billList">

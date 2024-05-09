@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_readbilldata",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [],
+          "params": [],
+          "table": {
+            "name": "billdata",
+            "alias": "billAccount"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select * from `billdata` as `billAccount`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "number",
+          "name": "orgId"
+        },
+        {
+          "type": "number",
+          "name": "siteId"
+        },
+        {
+          "type": "text",
+          "name": "invoiceNumber"
+        },
+        {
+          "type": "text",
+          "name": "invoiceType"
+        },
+        {
+          "type": "datetime",
+          "name": "issueDate"
+        },
+        {
+          "type": "datetime",
+          "name": "dueDate"
+        },
+        {
+          "type": "datetime",
+          "name": "periodFrom"
+        },
+        {
+          "type": "datetime",
+          "name": "periodTo"
+        },
+        {
+          "type": "number",
+          "name": "openingBalance"
+        },
+        {
+          "type": "number",
+          "name": "usage"
+        },
+        {
+          "type": "number",
+          "name": "newChargesIncTax"
+        },
+        {
+          "type": "number",
+          "name": "newChargesExTax"
+        },
+        {
+          "type": "number",
+          "name": "newCharges"
+        },
+        {
+          "type": "number",
+          "name": "totalAmountDue"
+        },
+        {
+          "type": "number",
+          "name": "billAccountId"
+        },
+        {
+          "type": "object",
+          "sub": [],
+          "name": "invoice"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

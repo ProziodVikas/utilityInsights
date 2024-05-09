@@ -16,7 +16,35 @@
     "description": ""
   },
   "index.ejs": {
-    "layoutPage": "testlayout",
+    "layoutPage": "layout2",
+    "description": ""
+  },
+  "billEntry.ejs": {
+    "layoutPage": "layout2",
+    "description": ""
+  },
+  "BillData.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "Billinvoice.ejs": {
+    "layoutPage": "",
+    "description": ""
+  },
+  "bills.ejs": {
+    "layoutPage": "layout2",
+    "description": ""
+  },
+  "billList.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "billAccount.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "AGLBills.ejs": {
+    "layoutPage": "layout2",
     "description": ""
   }
 }

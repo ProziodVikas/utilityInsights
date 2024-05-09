@@ -15,10 +15,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                 <div class="row">
                     <div class="col">
-                        <form is="dmx-serverconnect-form" id="formupdateSiteGroup" method="post" action="/api/siteGroup/update_sitegroup" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detailSiteGroup.data" dmx-on:success="notifies1.success('Site Group updated successfully');connectSiteGroup.load({})">
-                            <input type="hidden" name="siteGroupId" id="upd_siteGroupId" dmx-bind:value="data_detailSiteGroup.data.siteGroupId">
+                        <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="/api/siteGroup/update_sitegroup" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detailSiteGroup.data">
+                            <div class="row gx-3">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="upd_siteGroupId">Site group</label>
+                                        <input type="number" class="form-control" id="upd_siteGroupId" name="siteGroupId" dmx-bind:value="data_detailSiteGroup.data.siteGroupId" aria-describedby="upd_siteGroupId_help" placeholder="Enter Site group">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row gx-3">
                                 <div class="col">
                                     <div class="form-group mb-3">
@@ -53,16 +61,10 @@
                             </div>
                             <div class="row gx-3">
                                 <div class="col">
-                                    <div class="form-group mb-3 text-center">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <div class="form-group mb-3">
+                                        <button type="submit" class="btn btn-primary" dmx-bind:value="data_detailSiteGroup.data.Save" dmx-bind:disabled="state.executing">Save <span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group mb-3 text-center">
-                                        <button type="submit" class="btn btn-primary text-center" dmx-bind:value="data_detailSiteGroup.data.Save" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
-                                    </div>
-                                </div>
-
                             </div>
                         </form>
                     </div>
@@ -137,19 +139,21 @@
 </div>
 <div class="row">
     <div class="col">
-        <h2 class="text-center">Site Group</h2>
+        <h4 class="text-start fw-normal">Site Group</h4>
     </div>
 </div>
 <div class="row">
-    <div class="col text-end">
-        <button id="btn1" class="btn bg-secondary text-light" data-bs-toggle="modal" data-bs-target="#modal1">Add new SiteGroup</button>
+    <div class="col text-end lh-1">
+        <button id="btn1" class="btn btn-outline-secondary btn-sm lh-1" data-bs-toggle="modal" data-bs-target="#modal1"><i class="fas fa-pen"></i>
+            &nbsp;Add new SiteGroup</button>
     </div>
 </div>
+
 <div class="row">
     <div class="col">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead>
+            <table class="table table-bordered table-hover small text-nowrap">
+                <thead class="small">
                     <tr>
                         <th>Site group</th>
                         <th>Org</th>
@@ -160,14 +164,16 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSiteGroup.data.query_siteGroup" id="tableRepeat1">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="connectSiteGroup.data.query_siteGroup" id="tableRepeat1" class="small">
                     <tr>
                         <td dmx-text="siteGroupId"></td>
                         <td dmx-text="orgId"></td>
                         <td dmx-text="siteGroupName"></td>
                         <td dmx-text="siteGroupDis"></td>
                         <td dmx-text="siteGroupMedia"></td>
-                        <td dmx-text="'Edit'" dmx-on:click="modal2.show();data_detailSiteGroup.select(siteGroupId)"></td>
+                        <td dmx-text="'Edit'" dmx-on:click="modal2.show();data_detailSiteGroup.select(siteGroupId)"><i class="fas fa-flag"></i>
+
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>

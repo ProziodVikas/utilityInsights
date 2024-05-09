@@ -38,8 +38,8 @@
       },
       {
         "type": "number",
-        "fieldName": "orgRefSG",
-        "name": "orgRefSG"
+        "fieldName": "orgId",
+        "name": "orgId"
       }
     ]
   },
@@ -55,9 +55,9 @@
           "values": [
             {
               "table": "siteGroup",
-              "column": "orgRefSG",
+              "column": "orgId",
               "type": "number",
-              "value": "{{$_POST.orgRefSG}}"
+              "value": "{{$_POST.orgId}}"
             },
             {
               "table": "siteGroup",
@@ -95,12 +95,12 @@
             ]
           },
           "returning": "siteGroupId",
-          "query": "update `siteGroup` set `orgRefSG` = ?, `siteGroupName` = ?, `siteGroupDis` = ?, `siteGroupMedia` = ? where `siteGroupId` = ? returning `siteGroupId`",
+          "query": "update `siteGroup` set `orgId` = ?, `siteGroupName` = ?, `siteGroupDis` = ?, `siteGroupMedia` = ? where `siteGroupId` = ? returning `siteGroupId`",
           "params": [
             {
               "name": ":P1",
               "type": "expression",
-              "value": "{{$_POST.orgRefSG}}",
+              "value": "{{$_POST.orgId}}",
               "test": ""
             },
             {

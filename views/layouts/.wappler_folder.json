@@ -4,5 +4,8 @@
   },
   "testlayout.ejs": {
     "description": ""
+  },
+  "layout2.ejs": {
+    "description": ""
   }
 }

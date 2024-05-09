@@ -1,0 +1,265 @@
+<!-- Wappler include head-page="layouts/layout2" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="bills" appconnect="local" components="{dmxRouting:{},dmxPdfCreator:{},dmxS3Upload:{},dmxDataTraversal:{},dmxBootstrap5Navigation:{},dmxFormatter:{},dmxTagify:{},dmxAnimateCSS:{},dmxAutocomplete:{},dmxValidator:{},dmxScheduler:{}}" -->
+<dmx-scheduler id="scheduler1" dmx-on:tick="formendTime1.setValue((formendTime1.value - var1.datetime.secondsUntil(1)))" delay="2" norepeat="true"></dmx-scheduler>
+<dmx-serverconnect id="connect_billaccountfilter" url="/api/billentry/billdatafilter" dmx-param:filter="select1.value"></dmx-serverconnect>
+<dmx-serverconnect id="connectBilldata" url="/api/billAccount/AC_filter" dmx-param:filter="selectOrg.value"></dmx-serverconnect>
+<dmx-data-detail id="data_detailBilldata" dmx-bind:data="connectBilldata.data.query_read_billdata_orgfilter" key="id"></dmx-data-detail>
+
+
+
+<dmx-serverconnect id="connectOrg" url="/api/org/read_org"></dmx-serverconnect>
+<dmx-serverconnect id="connectSite" url="/api/site/read_site" dmx-param:filter="selectOrg.value"></dmx-serverconnect>
+
+
+<div class="container wappler-block">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="nav w-100">
+                <a class="nav-item nav-link" href="/billList">Back</a>
+            </div>
+        </div>
+        <div class="offset-lg-3 col-lg-2">
+            <h4 class="text-lg-center fw-bold text-nowrap">Bill Upload</h4>
+        </div>
+    </div>
+    <div class="row align-items-stretch">
+        <div class="col-12 col-md-6 border">
+            <dmx-datetime id="var1"></dmx-datetime>
+            <div class="row">
+                <div class="col">
+
+                    <form id="form1" action="/api/file/csvfile" is="dmx-serverconnect-form" method="post" dmx-on:start="formendTime1.setValue(var1.datetime.secondsUntil(1))" dmx-on:success="scheduler1.start()">
+
+                        <div class="form-group mb-3 col-lg">
+
+
+                            <input type="file" class="form-control" id="input2" name="input2" aria-describedby="input2_help" dmx-on:blur="form1.submit()">
+
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="row text-nowrap border-bottom">
+                <div class="col offset-lg-4">
+                    <div class="form-group mb-3 row">
+
+                        <label for="input3" class="col-sm-2 col-form-label col-form-label-sm">Select NMI</label>
+                        <div class="col-sm-10 offset-lg-1 col-lg-9">
+                            <select id="select_NMI1" class="form-select form-select-sm" dmx-bind:options="form1.data.csvImport" optiontext="_['NMI : MIRN : DPI']" optionvalue="_['NMI : MIRN : DPI']" name="NMI1">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress" dmx-show="form1.state.executing">
+                <div class="progress-bar progress-bar-animated bg-secondary" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" dmx-style:width="form1.uploadProgress.percent+'%'" aria-valuenow="25">Fetching data</div>
+            </div>
+            <div class="row text-nowrap">
+                <div class="col">
+
+                    <div class="form-group mb-3">
+
+
+                        <label for="input3" class="form-label col-form-label-sm col-form-label"><i class="fas fa-file-alt fa-3x"></i></label>
+                        <div class="row"><label for="input9" class="form-label">Uploaded Bills</label></div><input type="number" class="form-control" id="input3" name="input3" aria-describedby="input3_help" readonly="true" dmx-bind:value="(form1.data.csvImport.values(`_['NMI : MIRN : DPI']`).count() / 3).toFixed(0)" value=" " disabled="true">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+
+                        <label for="input4" class="form-label col-form-label-sm col-form-label"><i class="fas fa-file-alt fa-3x"></i>
+                            <i class="fas fa-check"></i></label>
+                        <div class="row"><label for="input9" class="form-label">Parsed Bills</label></div><input type="number" class="form-control" id="input4" name="input4" aria-describedby="input3_help" readonly="true" dmx-bind:value="(form1.data.csvImport.count() / 3).toFixed(0)" value=" " disabled="true">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+
+                        <label for="input5" class="form-label col-form-label-sm col-form-label"><i class="fas fa-file-alt fa-3x"></i> <i class="fas fa-times"> </i></label>
+                        <div class="row"><label for="input9" class="form-label">Unparsed Bills</label></div><input type="text" class="form-control" id="input5" name="input5" aria-describedby="input3_help" readonly="true" disabled="true">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label for="input6" class="form-label col-form-label-sm col-form-label"><i class="fas fa-building fa-3x"></i><i class="fas fa-university"></i></label>
+                        <div class="row"><label for="input9" class="form-label">Facilities</label></div><input type="text" class="form-control" id="input6" name="input6" aria-describedby="input3_help" dmx-bind:value="form1.data.csvImport.values(`_['NMI : MIRN : DPI']`).unique().count()" readonly="true" disabled="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row text-nowrap border-bottom">
+                <div class="col-lg-3">
+                    <div class="form-group mb-3">
+                        <label for="input7" class="form-label col-form-label-sm">Total GST</label>
+                        <input type="text" class="form-control" id="input7" name="input7" aria-describedby="input3_help" readonly="true" dmx-bind:value="form1.data.csvImport.values(`_['Total GST']`).sum().toFixed(2)" disabled="true">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-3">
+                        <label for="input7" class="form-label col-form-label-sm">Total Charges(Inc GST)</label>
+                        <input type="text" class="form-control" id="inp_totalCharges" name="totalCharges" aria-describedby="totalCharges_help" readonly="true" dmx-bind:value="form1.data.csvImport.values(`_['Total Current Account Charges (GST incl)']`).sum().toFixed(2)" disabled="true">
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-3">
+                        <label for="input7" class="form-label col-form-label-sm">Total Charges(excl GST)</label>
+
+                        <input type="text" class="form-control" id="inp_totalCharges1" name="totalCharges1" aria-describedby="totalCharges_help" readonly="true" disabled="true" dmx-bind:value="form1.data.csvImport.values(`_['Total Current Account Charges (GST excl.)']`).sum().toFixed(2)">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row text-nowrap border-bottom">
+                <div class="col-lg-3" dmx-hide="formendTime1.value&lt;0">
+                    <div class="form-group mb-3">
+
+                        <label for="input7" class="form-label col-form-label-sm">Time Required(Sec.)</label><input class="form-control" id="formendTime1" name="endTime1" aria-describedby="input8_help" dmx-bind:value="formStartTime.value-formendTime.value" disabled="true" readonly="true" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <div class="col-sm-10 small text-lg-start">
+                    <input type="file" class="form-control" id="input1" name="input1" aria-describedby="input1_help">
+                </div>
+            </div>
+            <iframe dmx-bind:src="input1.file.dataUrl" width="100%" height="500px"></iframe>
+        </div>
+        <div class="col-12 col-md-6 text-center border">
+
+            <div class="row small text-lg-start border-bottom">
+
+
+
+                <div class="col-lg col-lg-6">
+                    <div class="form-group mb-3 col-lg-8 text-lg-start">
+                        <label for="selectOrg" class="form-label col-form-label-sm">Select Organization</label>
+                        <select id="selectOrg" class="form-select form-select-sm" name="billentry_selctOrg" dmx-bind:options="connectOrg.data.queryOrg" optiontext="orgDis" optionvalue="orgId">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3 text-lg-start col-lg-10">
+                        <label for="select1" class="form-label col-form-label-sm">Select Bill Account</label>
+                        <select id="select1" class="form-select form-select-sm" dmx-bind:options="connectBilldata.data.query_AC_filter" optiontext="accountNumber" optionvalue="id">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col bg-white">
+
+
+                    <form is="dmx-serverconnect-form" id="billEntryAdd_form" method="post" action="/api/billentry/add_billdata" dmx-generator="bootstrap5" dmx-form-type="horizontal">
+                        <div class="row text-lg-start small text-nowrap">
+
+                            <div class="col">
+
+
+                                <div class="form-group mb-3 text-lg-start">
+                                    <label for="ins_billentryorgId" class="col-sm-2 col-form-label">Org</label><input type="number" class="form-control form-control-sm" id="ins_billentryorgId" name="orgId" aria-describedby="ins_billentryorgId_help" placeholder="Enter Org" dmx-bind:value="selectOrg.value">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrysiteId" class="col-sm-2 col-form-label">Site</label><input type="number" class="form-control form-control-sm" id="ins_billentrysiteId" name="siteId" aria-describedby="ins_billentrysiteId_help" placeholder="Enter Site" dmx-bind:value="connect_billaccountfilter.data.query_billdatafilter[0].siteId">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryinvoiceNumber" class="col-sm-2 col-form-label">Invoice Number</label><input type="number" class="form-control form-control-sm" id="ins_billentryinvoiceNumber" name="invoiceNumber" aria-describedby="ins_billentryinvoiceNumber_help" placeholder="Enter Invoice number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-lg-start small text-nowrap">
+
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryinvoiceType" class="col-sm-2 col-form-label">Invoice type</label><input type="text" class="form-control form-control-sm" id="ins_billentryinvoiceType" name="invoiceType" aria-describedby="ins_billentryinvoiceType_help" placeholder="Enter Invoice type" dmx-bind:value="form1.data.csvImport.values(`_['NMI : MIRN : DPI']`)">
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryissueDate" class="col-sm-2 col-form-label">Issue date</label><input type="date" class="form-control form-control-sm" id="ins_billentryissueDate" name="issueDate" aria-describedby="ins_billentryissueDate_help" placeholder="Enter Issue date">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrydueDate" class="col-sm-2 col-form-label">Due date</label><input type="date" class="form-control form-control-sm" id="ins_billentrydueDate" name="dueDate" aria-describedby="ins_billentrydueDate_help" placeholder="Enter Due date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-lg-start small text-nowrap">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryperiodFrom" class="col-sm-2 col-form-label">Period from</label><input type="date" class="form-control form-control-sm" id="ins_billentryperiodFrom" name="periodFrom" aria-describedby="ins_billentryperiodFrom_help" placeholder="Enter Period from">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryperiodTo" class="col-sm-2 col-form-label">Period to</label><input type="date" class="form-control form-control-sm" id="ins_billentryperiodTo" name="periodTo" aria-describedby="ins_billentryperiodTo_help" placeholder="Enter Period to">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryopeningBalance" class="col-sm-2 col-form-label">Opening balance</label><input type="number" class="form-control form-control-sm" id="ins_billentryopeningBalance" name="openingBalance" aria-describedby="ins_billentryopeningBalance_help" placeholder="Enter Opening balance">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-lg-start small text-nowrap">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentryusage" class="col-sm-2 col-form-label">Usage</label><input type="number" class="form-control form-control-sm" id="ins_billentryusage" name="usage" aria-describedby="ins_billentryusage_help" placeholder="Enter Usage" dmx-bind:value="form1.data.csvImport.values(`_['NMI : MIRN : DPI']`)">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrynewChargesIncTax" class="col-sm-2 col-form-label">New charges inc tax</label><input type="number" class="form-control form-control-sm" id="ins_billentrynewChargesIncTax" name="newChargesIncTax" aria-describedby="ins_billentrynewChargesIncTax_help" placeholder="Enter New charges inc tax" dmx-bind:value="form1.data.csvImport[select_NMI.selectedIndex]['Total Current Account Charges (GST incl)']">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrynewChargesExTax" class="col-sm-2 col-form-label">New charges ex tax</label><input type="number" class="form-control form-control-sm" id="ins_billentrynewChargesExTax" name="newChargesExTax" aria-describedby="ins_billentrynewChargesExTax_help" placeholder="Enter New charges ex tax" dmx-bind:value="form1.data.csvImport[select_NMI.selectedIndex]['Total Current Account Charges (GST excl)']">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-lg-start small text-nowrap">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrynewCharges" class="col-sm-2 col-form-label">GST</label><input type="number" class="form-control form-control-sm" id="ins_billentrynewCharges" name="newCharges" aria-describedby="ins_billentrynewCharges_help" placeholder="Enter New charges" dmx-bind:value="form1.data.csvImport[select_NMI.selectedIndex]['Total GST']">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="ins_billentrytotalAmountDue" class="col-sm-2 col-form-label">Total amount due</label><input type="number" class="form-control form-control-sm" id="ins_billentrytotalAmountDue" name="totalAmountDue" aria-describedby="ins_billentrytotalAmountDue_help" placeholder="Enter Total amount due" dmx-bind:value="form1.data.sourcedata[i]['Total GST']">
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <input id="ins_billEntry_invoice" name="invoice" class="form-control visually-hidden" dmx-bind:value="input1.file.name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row small text-nowrap text-lg-center">
+                            <div class="col">
+                                <button id="btn1" class="btn bg-secondary" dmx-on:click="billEntryAdd_form.reset(true)">Cancel</button>
+                            </div>
+                            <div class="col"><button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing">Submit&nbsp;<span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button></div>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<meta name="ac:route" content="/bills">

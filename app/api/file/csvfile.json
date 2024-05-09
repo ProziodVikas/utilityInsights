@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/bills.ejs",
+      "linkedForm": "form1"
+    },
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ],
+    "$_POST": [
+      {
+        "type": "file",
+        "fieldName": "input2",
+        "name": "input2",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "array",
+        "name": "record",
+        "sub": [
+          {
+            "type": "number",
+            "name": "orgId"
+          },
+          {
+            "type": "text",
+            "name": "siteGroupName"
+          },
+          {
+            "type": "text",
+            "name": "siteGroupDis"
+          },
+          {
+            "type": "text",
+            "name": "siteGroupMedia"
+          }
+        ]
+      },
+      {
+        "type": "number",
+        "fieldName": "index",
+        "name": "index"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "upload",
+        "module": "upload",
+        "action": "upload",
+        "options": {
+          "fields": "{{$_POST.input2}}",
+          "path": "/public/uploads",
+          "overwrite": true,
+          "replaceSpace": true
+        },
+        "meta": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "file",
+        "output": true
+      },
+      {
+        "name": "csvImport",
+        "module": "import",
+        "action": "csv",
+        "options": {
+          "path": "{{upload.path}}",
+          "fields": [
+            "Total GST",
+            "Total Current Account Charges (GST excl.)",
+            "Total Current Account Charges (GST incl)",
+            "NMI : MIRN : DPI"
+          ],
+          "header": true
+        },
+        "meta": [
+          {
+            "name": "Total GST",
+            "type": "text"
+          },
+          {
+            "name": "Total Current Account Charges (GST excl.)",
+            "type": "text"
+          },
+          {
+            "name": "Total Current Account Charges (GST incl)",
+            "type": "text"
+          },
+          {
+            "name": "NMI : MIRN : DPI",
+            "type": "text"
+          }
+        ],
+        "outputType": "array",
+        "output": true
+      },
+      {
+        "name": "list",
+        "module": "arraylist",
+        "action": "create",
+        "options": {
+          "value": "{{csvImport}}",
+          "schema": [
+            {
+              "type": "array",
+              "name": "Sub Account Number"
+            },
+            {
+              "type": "array",
+              "name": "Total GST"
+            },
+            {
+              "type": "array",
+              "name": "Total Current Account Charges (GST excl)"
+            },
+            {
+              "type": "text",
+              "name": "Total Current Account Charges (GST incl)"
+            }
+          ]
+        },
+        "meta": [
+          {
+            "type": "array",
+            "name": "Sub Account Number"
+          },
+          {
+            "type": "array",
+            "name": "Total GST"
+          },
+          {
+            "type": "array",
+            "name": "Total Current Account Charges (GST excl)"
+          },
+          {
+            "type": "text",
+            "name": "Total Current Account Charges (GST incl)"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "name": "sourcedata",
+        "module": "arraylist",
+        "action": "value",
+        "options": {
+          "ref": "list"
+        },
+        "output": true,
+        "meta": [
+          {
+            "name": "Sub Account Number",
+            "type": "array"
+          },
+          {
+            "name": "Total GST",
+            "type": "array"
+          },
+          {
+            "name": "Total Current Account Charges (GST excl)",
+            "type": "array"
+          },
+          {
+            "name": "Total Current Account Charges (GST incl)",
+            "type": "text"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
+  }
+}
